@@ -68,7 +68,7 @@ compare_fpv( Lhs const& lhs, Rhs const& rhs, OP* cmp_operator)
     bool result = cmp_operator->eval_direct(lhs, rhs);
     if(fpctraits<OP>::equality_logical_disjunction) {
         return result || compare_fpv<FPT>(lhs, rhs, (op::EQ<Lhs, Rhs>*)0);
-    }
+}
     return result && compare_fpv<FPT>(lhs, rhs, (op::NE<Lhs, Rhs>*)0);
 }
 
@@ -109,7 +109,7 @@ compare_fpv( Lhs const& lhs, Rhs const& rhs, op::EQ<Lhs,Rhs>* )
 {
     if( lhs == 0 ) {
         return compare_fpv_near_zero( rhs, (op::EQ<Lhs,Rhs>*)0 );
-    }
+}
     else if( rhs == 0) {
         return compare_fpv_near_zero( lhs, (op::EQ<Lhs,Rhs>*)0 );
     }
@@ -121,7 +121,7 @@ compare_fpv( Lhs const& lhs, Rhs const& rhs, op::EQ<Lhs,Rhs>* )
             ar.message() << "Relative difference exceeds tolerance ["
                          << P.tested_rel_diff() << " > " << P.fraction_tolerance() << ']';
         return ar;
-    }
+}
 }
 
 //____________________________________________________________________________//
@@ -132,10 +132,10 @@ compare_fpv( Lhs const& lhs, Rhs const& rhs, op::NE<Lhs,Rhs>* )
 {
     if( lhs == 0 ) {
         return compare_fpv_near_zero( rhs, (op::NE<Lhs,Rhs>*)0 );
-    }
+}
     else if( rhs == 0 ) {
         return compare_fpv_near_zero( lhs, (op::NE<Lhs,Rhs>*)0 );
-    }
+}
     else {
         fpc::close_at_tolerance<FPT> P( fpc_tolerance<FPT>(), fpc::FPC_WEAK );
 
