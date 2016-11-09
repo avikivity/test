@@ -304,6 +304,8 @@ exe smoke-ts-included : smoke-ts/basic-smoke-test.cpp
 
 exe smoke-ts-included-2 : smoke-ts/basic-smoke-test2.cpp ;
 
+exe smoke-invalid-handling-log-global-fixture : framework-ts/log-invalid-xml-test.cpp ;
+
 alias "smoke-ts"
 :
 [ boost.test-smoke-ts-logger bt-st-txml : XML : log ]
@@ -316,6 +318,8 @@ alias "smoke-ts"
 [ boost.test-smoke-ts-logger bt-st-tjunit : JUNIT : log : : yes ]
 [ run smoke-ts-included-2 : <testing.arg>\"--run_test=test<*\" : : : bt-st-runtest-with-colons ]
 [ run smoke-ts-included : --version : : $(requirements_datasets) : cla-check-print-version ]
+[ run smoke-invalid-handling-log-global-fixture : --log_format=XML --log_level=all : : : log-global-fixture-XML ]
+[ run smoke-invalid-handling-log-global-fixture : --log_format=JUNIT --log_level=all : : : log-global-fixture-JUNIT ]
 # : $(requirements_datasets)
 ;
 
