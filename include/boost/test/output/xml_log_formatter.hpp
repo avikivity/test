@@ -36,6 +36,9 @@ namespace output {
 
 class xml_log_formatter : public unit_test_log_formatter {
 public:
+
+    xml_log_formatter();
+
     // Formatter interface
     void    log_start( std::ostream&, counter_t test_cases_amount );
     void    log_finish( std::ostream& );
@@ -58,9 +61,14 @@ public:
     void    entry_context_finish( std::ostream&, log_level );
 
 private:
+
+    void buffer_or_stream(std::ostream&, const std::string&);
+
     // Data members
     const_string    m_curr_tag;
     bool            m_value_closed;
+    bool            m_log_has_started;
+    std::string     m_buffering_before_start;
 };
 
 } // namespace output
