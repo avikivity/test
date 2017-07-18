@@ -101,6 +101,8 @@ lib boost_test_exec_monitor
     <link>shared:<define>BOOST_TEST_DYN_LINK=1
   ;
 
+explicit boost_test_exec_monitor ;
+
 lib boost_unit_test_framework
   : # sources
     $(UTF_SOURCES).cpp
