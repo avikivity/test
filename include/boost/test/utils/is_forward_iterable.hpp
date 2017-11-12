@@ -211,7 +211,7 @@ struct bt_iterator_traits< T, true >{
           typename std::remove_reference<T>::type 
         >::type>().begin()) const_iterator;
 
-  #if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1700))
+  #if BOOST_WORKAROUND(BOOST_MSVC, <= 1700)
     typedef typename const_iterator::value_type value_type;
   #else
     typedef typename std::iterator_traits<const_iterator>::value_type value_type;
