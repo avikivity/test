@@ -204,10 +204,19 @@ struct bt_iterator_traits< T, true >{
     BOOST_STATIC_ASSERT((is_forward_iterable<T>::value)); //, "only for forward iterable types");
 #if defined(BOOST_TEST_FWD_ITERABLE_CXX03)
     typedef typename T::const_iterator const_iterator;
-#else
-    typedef decltype(std::declval<typename boost::add_const<T>::type>().begin()) const_iterator;
-#endif
     typedef typename std::iterator_traits<const_iterator>::value_type value_type;
+#else
+    typedef decltype(std::declval<
+        typename boost::add_const<
+          typename std::remove_reference<T>::type 
+        >::type>().begin()) const_iterator;
+
+  #if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1700))
+    typedef typename const_iterator::value_type value_type;
+  #else
+    typedef typename std::iterator_traits<const_iterator>::value_type value_type;
+  #endif
+#endif
 
     static const_iterator begin(T const& container) {
         return container.begin();
