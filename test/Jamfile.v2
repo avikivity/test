@@ -161,6 +161,7 @@ test-suite "writing-test-ts"
   [ boost.test-self-test run : writing-test-ts : user-defined-types-logging-customization-points ]
   [ boost.test-self-test run : writing-test-ts : test-fixture-detect-setup-teardown ]
   [ boost.test-self-test run : writing-test-ts : test-fixture-detect-setup-teardown-cpp11 : : : : : : [ requires cxx11_decltype cxx11_trailing_result_types ] ]
+  [ boost.test-self-test run : writing-test-ts : test-with-precondition : : : : : : [ requires cxx11_auto_declarations cxx11_lambdas ] ]
 ;
 
 #_________________________________________________________________________________________________#
@@ -176,6 +177,7 @@ test-suite "test-organization-ts"
   [ boost.test-self-test run : test-organization-ts : test_unit-nested-suite-dependency ]
   [ boost.test-self-test run : test-organization-ts : test-tree-management-test ]
   [ boost.test-self-test run : test-organization-ts : test-tree-several-suite-decl ]
+
 ;
 
 #_________________________________________________________________________________________________#

@@ -12,8 +12,15 @@
 #define BOOST_TEST_MODULE test_preconditions
 #include <boost/test/unit_test.hpp>
 
+bool returning_false() {
+  return false;
+}
+
 BOOST_AUTO_TEST_CASE(fail,
-                     *boost::unit_test::precondition([](boost::unit_test::test_unit_id){ return false; }))
+                     *boost::unit_test::precondition([](boost::unit_test::test_unit_id){
+                        return returning_false();
+                     }
+                     ))
 {
 
 }
